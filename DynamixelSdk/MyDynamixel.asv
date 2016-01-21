@@ -63,13 +63,6 @@ classdef MyDynamixel < handle
             MD.Devices(MD.numDevices).id = id;
             MD.Devices(MD.numDevices).status = 'active';
             MD.Devices(MD.numDevices).index = MD.numDevices;
-            MD.Devices(MD.numDevices).offset = 0;
-            MD.Devices(MD.numDevices).xMin = 0;
-            MD.Devices(MD.numDevices).xMax = deg2rad(300);
-            MD.Devices(MD.numDevices).x = 0;
-            MD.Devices(MD.numDevices).name = 'noname';
-            MD.Devices(MD.numDevices).speed = 10;
-            MD.Devices(MD.numDevices).maxSpeed = 114;
         end
         function removeDevice(MD,id)
             for i = 1: MD.numDevices
@@ -87,11 +80,7 @@ classdef MyDynamixel < handle
                     val = varargin{i+1};
                     switch prop
                         case 'id'
-                            for j = 1: length(MD.Devices)
-                                if MD.Devices(j).id == val
-                                    ind = j;
-                                end
-                            end
+                            ind = find(MD.Devices(:).id == val);
                         case 'index'
                             ind = val;
                         case 'deg'
@@ -133,11 +122,8 @@ classdef MyDynamixel < handle
                     val = varargin{i+1};
                     switch prop
                         case 'id'
-                            for j = 1: length(MD.Devices)
-                                if MD.Devices(j).id == val
-                                    ind = j;
-                                end
-                            end
+                            for i = 1: MD.D
+                            ind = find(MD.Devices(:).id == val);
                         case 'index'
                             ind = val;
                         case 'RPM'                                                                                                             
