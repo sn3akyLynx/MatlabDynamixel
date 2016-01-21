@@ -1,5 +1,7 @@
-o  = MyDynamixel(5);
-o.viewSupportFcn();
+
+dynamixel_id = 5;
+o  = MyDynamixel(dynamixel_id);
+% o.viewSupportFcn();
 o.portNum = 16;
 o.baudNum = 1;
 o.init()
